@@ -13,8 +13,7 @@ terraform {
 }
 
 resource "aws_key_pair" "deployer_key" {
-  key_name   = "githubcikey"
-  public_key = file(var.public_key_path)
+  key_name = "githubcikey"
 }
 
 resource "aws_security_group" "allow_ssh_http" {
@@ -44,7 +43,7 @@ resource "aws_security_group" "allow_ssh_http" {
 }
 
 resource "aws_instance" "web_app" {
-  ami           = "ami-0ebfd941bbafe70c6"  # Replace with your AMI
+  ami           = "ami-0abcdef1234567890"  # Replace with your preferred AMI
   instance_type = "t2.micro"
   key_name      = aws_key_pair.deployer_key.key_name
   security_groups = [
@@ -71,4 +70,3 @@ output "instance_public_ip" {
 output "instance_public_dns" {
   value = aws_instance.web_app.public_dns
 }
-
