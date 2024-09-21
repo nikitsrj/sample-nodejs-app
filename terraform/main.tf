@@ -1,12 +1,12 @@
 provider "aws" {
-  region = var.aws_region
+  region = us-east-1
 }
 
 terraform {
   backend "s3" {
     bucket         = "tfstates3975050281564"
     key            = "ec2/terraform.tfstate"
-    region         = var.aws_region
+    region         = us-east-1
     dynamodb_table = "your-lock-table"
     encrypt        = true
   }
