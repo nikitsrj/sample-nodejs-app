@@ -43,7 +43,7 @@ resource "aws_security_group" "allow_ssh_http" {
 resource "aws_instance" "web_app" {
   ami           = "ami-0ebfd941bbafe70c6"  # Replace with your preferred AMI
   instance_type = "t2.micro"
-  key_name      = aws_key_pair.deployer_key.key_name
+  key_name      = data.aws_key_pair.deployer_key.key_name
   security_groups = [
     aws_security_group.allow_ssh_http.name,
   ]
