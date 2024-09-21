@@ -8,9 +8,9 @@ on:
 jobs:
   # Job 1: tfinit (Initialize Terraform)
   tfinit:
-    environment: test
     name: Terraform Init
     runs-on: ubuntu-latest
+    environment: test
 
     steps:
       - name: Checkout code
@@ -34,9 +34,9 @@ jobs:
 
   # Job 2: tfplan (Terraform Plan)
   tfplan:
-    environment: test
     name: Terraform Plan
     runs-on: ubuntu-latest
+    environment: test
     needs: tfinit
 
     steps:
@@ -56,9 +56,9 @@ jobs:
 
   # Job 3: tfapply (Terraform Apply)
   tfapply:
-    environment: test
     name: Terraform Apply
     runs-on: ubuntu-latest
+    environment: test
     needs: tfplan
 
     steps:
@@ -85,9 +85,9 @@ jobs:
 
   # Job 4: buildapp (Build the Application)
   buildapp:
-    environment: test
     name: Build App
     runs-on: ubuntu-latest
+    environment: test
     needs: tfapply
 
     steps:
@@ -105,9 +105,9 @@ jobs:
 
   # Job 5: deployapp (Deploy App to EC2)
   deployapp:
-    environment: test
     name: Deploy App to EC2
     runs-on: ubuntu-latest
+    environment: test
     needs: buildapp
 
     steps:
@@ -127,4 +127,3 @@ jobs:
             npm install
             nohup npm start &
           EOF
-
